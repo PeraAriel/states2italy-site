@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vetrina — States2Italy</title>
+  <meta name="description" content="La vetrina States2Italy: sportive e icone americane selezionate, pronte per l'importazione in Italia." />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="nav-left">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="vetrina.html">Vetrina</a>
+      </div>
+      <a class="nav-logo" href="index.html" aria-label="States2Italy — Home">
+        <img src="assets/img/logo.png" alt="States2Italy" />
+      </a>
+      <div class="nav-right">
+        <a class="nav-cta" href="#contatti">Contattaci</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <a class="car-back" href="index.html">&#8249; Torna alla home</a>
+        <p class="kicker">Vetrina</p>
+        <h1 class="section-title">Selezionate per voi.</h1>
+        <p class="lead" style="margin-top: 16px;">
+          Una selezione di esemplari disponibili o in arrivo. Ogni auto può essere
+          importata su richiesta con servizio chiavi in mano.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid-cars" data-cars-grid>
+        <!-- Schede renderizzate da js/vetrina.js a partire dal data layer -->
+      </div>
+    </section>
+
+    <section class="section section-soft cta-band" id="contatti">
+      <div class="wrap">
+        <p class="kicker">Contatti</p>
+        <h2 class="section-title">Non trovi la tua auto?</h2>
+        <p class="lead">Scrivici modello, anno e budget: attiviamo una ricerca dedicata sul territorio americano.</p>
+        <a class="btn" href="mailto:states2italy@gmail.com">states2italy@gmail.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo.png" alt="States2Italy" />
+          <p>Importazione di sportive e icone americane dagli Stati Uniti all'Italia, con servizio chiavi in mano.</p>
+        </div>
+        <nav class="footer-col" aria-label="Navigazione">
+          <h4>Navigazione</h4>
+          <a href="index.html">Home</a>
+          <a href="vetrina.html">Vetrina</a>
+          <a href="#contatti">Contatti</a>
+        </nav>
+        <nav class="footer-col" aria-label="Pagine legali">
+          <h4>Legale</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="termini.html">Termini e Condizioni</a>
+        </nav>
+        <div class="footer-col">
+          <h4>Contatti</h4>
+          <a href="mailto:states2italy@gmail.com">states2italy@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <small>© 2026 States2Italy — Import auto dagli Stati Uniti</small>
+        <small>Foto e video: Wikimedia Commons — video: SE FPV, anotherview (CC BY 3.0, uso illustrativo)</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cars-data.js"></script>
+  <script src="js/cars-store.js"></script>
+  <script src="js/vetrina.js"></script>
+  <script src="js/reveal.js"></script>
+</body>
+</html>
