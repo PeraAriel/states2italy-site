@@ -129,14 +129,23 @@ a { color: inherit; text-decoration: none; }
 .slide {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1s ease, visibility 0s linear 1s;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
 }
 
 .slide.is-active {
   opacity: 1;
   visibility: visible;
-  transition: opacity 1s ease;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+
+/* La slide uscente resta visibile sotto quella entrante:
+   dissolvenza incrociata vera, senza flash di nero */
+.slide.is-leaving {
+  opacity: 1;
+  visibility: visible;
   z-index: 1;
+  transition: none;
 }
 
 .slide img {
@@ -152,6 +161,7 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: brightness(0.72);
 }
 
 .slide.is-active img { transform: scale(1); }
@@ -160,11 +170,18 @@ a { color: inherit; text-decoration: none; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.45) 0%,
-    rgba(0, 0, 0, 0) 40%
-  );
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.68) 0%,
+      rgba(0, 0, 0, 0.28) 42%,
+      rgba(0, 0, 0, 0) 68%
+    ),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0) 55%
+    );
   pointer-events: none;
 }
 
@@ -174,7 +191,8 @@ a { color: inherit; text-decoration: none; }
   bottom: 52px;
   z-index: 2;
   color: #fff;
-  max-width: 560px;
+  max-width: 760px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
 }
 
 .slide-caption .tag {
@@ -188,24 +206,25 @@ a { color: inherit; text-decoration: none; }
 }
 
 .slide-caption h2 {
-  font-size: clamp(24px, 3.6vw, 40px);
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: clamp(36px, 6.5vw, 80px);
+  font-weight: 300; /* light e spaziato, come il logo STATES2ITALY */
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  line-height: 1.15;
+  line-height: 1.12;
 }
 
 .slide-caption p {
-  margin-top: 8px;
-  font-size: 14px;
-  opacity: 0.85;
+  margin-top: 14px;
+  font-size: clamp(15px, 1.4vw, 19px);
+  letter-spacing: 0.04em;
+  opacity: 0.9;
 }
 
 /* Controls */
-.carousel-btn {
+.carousel-toggle {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 28px;
+  bottom: 26px;
   z-index: 3;
   width: 46px;
   height: 46px;
@@ -213,22 +232,39 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid rgba(255, 255, 255, 0.55);
   background: rgba(0, 0, 0, 0.15);
   color: #fff;
-  font-size: 18px;
-  line-height: 1;
   cursor: pointer;
   display: grid;
   place-items: center;
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-.carousel-btn:hover {
+.carousel-toggle:hover {
   background: #fff;
   border-color: #fff;
   color: var(--ink);
 }
 
-.carousel-btn.prev { left: 28px; }
-.carousel-btn.next { right: 28px; }
+/* Icona pausa: due barre verticali */
+.carousel-toggle .icon-pause {
+  width: 12px;
+  height: 14px;
+  border-left: 4px solid currentColor;
+  border-right: 4px solid currentColor;
+}
+
+/* Icona play: triangolo */
+.carousel-toggle .icon-play {
+  display: none;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid currentColor;
+  margin-left: 3px;
+}
+
+.carousel-toggle.is-paused .icon-pause { display: none; }
+.carousel-toggle.is-paused .icon-play { display: block; }
 
 .carousel-dots {
   position: absolute;
@@ -637,6 +673,32 @@ a { color: inherit; text-decoration: none; }
 
 .btn:hover::after { transform: scaleX(1); }
 
+/* ---------- Bottone torna alla home ---------- */
+.back-home {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  display: inline-block;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.back-home:hover { color: var(--ink); background: #fff; }
+
+@media (max-width: 720px) {
+  .back-home { right: 14px; bottom: 14px; padding: 10px 16px; }
+}
+
 .car-missing { padding: 40px 0; }
 
 /* ---------- Animazioni di ingresso ---------- */
@@ -772,8 +834,7 @@ a { color: inherit; text-decoration: none; }
   .nav-logo { justify-content: flex-start; }
   .nav-logo img { height: 32px; }
   .slide-caption { left: 22px; right: 22px; bottom: 64px; }
-  .carousel-btn.prev { left: 14px; }
-  .carousel-btn.next { right: 14px; }
+  .carousel-toggle { right: 14px; bottom: 18px; }
   .grid-cars { grid-template-columns: 1fr; }
   .car-info { flex-wrap: wrap; gap: 4px 12px; }
   .car-info .price { white-space: normal; }
