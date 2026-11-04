@@ -114,5 +114,44 @@ const CARS = [
       "assets/img/cars/shelby-gt500-2.jpg",
       "assets/img/cars/shelby-gt500-3.jpg"
     ]
+  },
+  {
+    id: 6,
+    slug: "harley-davidson-sportster-iron-883",
+    name: "Harley-Davidson Sportster Iron 883",
+    year: 2022,
+    engine: "V-Twin Evolution 883 cc · 52 CV",
+    km: 2400,
+    country: "Wisconsin, USA",
+    price: "Su richiesta",
+    status: "Disponibile",
+    description:
+      "Il V-Twin di Milwaukee nel suo formato più essenziale: serbatoio " +
+      "peanut, scarico nero e sound inconfondibile. Esemplare in ottime " +
+      "condizioni, tagliandi documentati. Foto da concessionario a scopo illustrativo.",
+    photos: [
+      "assets/img/moto/harley-davidson-sportster-iron-883.jpg",
+      "assets/img/moto/harley-davidson-sportster-xl883.jpg",
+      "assets/img/moto/harley-davidson-sportster-1200.jpg"
+    ]
+  },
+  {
+    id: 7,
+    slug: "buell-rr1000-battletwin",
+    name: "Buell RR1000 Battletwin",
+    year: 1987,
+    engine: "V-Twin 1000 cc · 75 CV",
+    km: 5800,
+    country: "Wisconsin, USA",
+    price: "Su richiesta",
+    status: "Disponibile",
+    description:
+      "Rarità americana degli anni '80: la Buell da record, con la carenatura " +
+      "integrale e il telaio che l'hanno resa un cult. Esemplare conservato, " +
+      "documenti in regola. Foto da concessionario a scopo illustrativo.",
+    photos: [
+      "assets/img/moto/buell-rr1000-battletwin-1.jpg",
+      "assets/img/moto/buell-rr1000-battletwin-2.jpg"
+    ]
   }
 ];

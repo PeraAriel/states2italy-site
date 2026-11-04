@@ -71,7 +71,7 @@
             <p class="car-desc">${car.description}</p>
           </section>
 
-          <a class="btn" href="vetrina.html#contatti">Richiedi questa auto</a>
+          <a class="btn" href="vetrina.html#contatti">${car.status === "Solo esposizione" ? "Richiedi informazioni" : "Richiedi questa auto"}</a>
         </div>
       </div>
     </div>`;
