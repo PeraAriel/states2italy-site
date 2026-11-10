@@ -839,6 +839,70 @@ a, button, .car-card, .car-feature {
 
 .car-missing { padding: 40px 0; }
 
+/* ---------- Loader vetrina (attesa dati Supabase) ---------- */
+.cars-loader {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-height: 320px;
+  padding: 40px 0;
+}
+
+.cars-loader-logo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 150px;
+}
+
+.cars-loader-logo img {
+  width: 96px;
+  opacity: 0.35;
+  animation: loader-pulse 2s ease-in-out infinite;
+}
+
+.cars-loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  border-top-color: var(--ink);
+  animation: loader-spin 1s linear infinite;
+}
+
+.cars-loader p {
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cars-loader.is-done {
+  animation: loader-out 0.4s ease forwards;
+}
+
+@keyframes loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loader-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50% { transform: scale(1.12); opacity: 0.6; }
+}
+
+@keyframes loader-out {
+  to { opacity: 0; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cars-loader-logo img,
+  .cars-loader-ring { animation: none; }
+}
+
 /* ---------- Animazioni di ingresso ---------- */
 .reveal {
   opacity: 0;

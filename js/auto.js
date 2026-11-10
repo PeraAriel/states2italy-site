@@ -9,6 +9,18 @@
   const root = document.querySelector("[data-car-detail]");
   if (!root) return;
 
+  // Loader con logo mentre la scheda arriva da Supabase
+  root.innerHTML = `
+    <div class="wrap">
+      <div class="cars-loader" role="status" aria-label="Caricamento scheda">
+        <div class="cars-loader-logo">
+          <img src="assets/img/logo.png" alt="" />
+          <span class="cars-loader-ring"></span>
+        </div>
+        <p>Caricamento scheda</p>
+      </div>
+    </div>`;
+
   const slug = new URLSearchParams(location.search).get("auto");
   const car = slug ? await CarsStore.getCarBySlug(slug) : null;
 

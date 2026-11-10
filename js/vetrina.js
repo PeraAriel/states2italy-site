@@ -8,6 +8,16 @@
   const grid = document.querySelector("[data-cars-grid]");
   if (!grid) return;
 
+  // Loader con logo mentre i dati arrivano da Supabase
+  grid.innerHTML = `
+    <div class="cars-loader" role="status" aria-label="Caricamento vetrina">
+      <div class="cars-loader-logo">
+        <img src="assets/img/logo.png" alt="" />
+        <span class="cars-loader-ring"></span>
+      </div>
+      <p>Caricamento vetrina</p>
+    </div>`;
+
   const cars = await CarsStore.getCars();
   const isHome = grid.classList.contains("grid-cars-home");
 
@@ -118,16 +128,5 @@
   }
 
   // Notifica reveal.js che ci sono nuovi .reveal da osservare
-  // Su touch alcuni browser "mangiano" il primo tap sui link con hover:
-  // navighiamo esplicitamente al touchend, così basta un solo tocco.
-  if (window.matchMedia("(hover: none)").matches) {
-    grid.querySelectorAll("a.car-card, a.car-feature").forEach((a) => {
-      a.addEventListener("touchend", (e) => {
-        e.preventDefault();
-        location.href = a.href;
-      });
-    });
-  }
-
   document.dispatchEvent(new CustomEvent("states2italy:rendered"));
 })();
