@@ -564,6 +564,13 @@ a { color: inherit; text-decoration: none; }
 
 .car-card:hover .car-media img { transform: scale(1.045); }
 
+/* Su touch il primo tap deve aprire il link, non attivare l'hover:
+   disattiva gli effetti hover sui dispositivi senza mouse */
+@media (hover: none) {
+  .car-card:hover .car-media img,
+  .car-feature:hover .feature-media img { transform: none; }
+}
+
 .car-info {
   display: flex;
   align-items: baseline;
