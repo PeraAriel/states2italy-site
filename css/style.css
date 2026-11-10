@@ -864,14 +864,19 @@ a, button, .car-card, .car-feature {
   background: #fff;
 }
 
-/* Variante inline (home): nel flusso della pagina, come prima */
+/* Variante inline (home): nel flusso della pagina, con la stessa
+   altezza del carosello che apparira' — la pagina non salta */
 .cars-loader-inline {
   position: static;
   background: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  min-height: 320px;
+  min-height: 480px;
   padding: 40px 0;
+}
+
+@media (max-width: 720px) {
+  .cars-loader-inline { min-height: 560px; }
 }
 
 .cars-loader-logo {
