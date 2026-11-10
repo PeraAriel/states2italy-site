@@ -68,12 +68,9 @@
   function openModal(sourceText) {
     if (open) return;
     open = true;
-    // Il titolo segue il pulsante cliccato: "Realizza il tuo sogno"
-    // dalla home, "Parliamone." dagli altri "Contattaci"
+    // Titolo sempre "Parliamone." — semplice e coerente ovunque
     const title = modal.querySelector("[data-title]");
-    title.textContent = /sogno/i.test(sourceText || "")
-      ? "Il tuo sogno ti aspetta."
-      : "Parliamone.";
+    title.textContent = "Parliamone.";
     modal.classList.remove("is-closing");
     modal.classList.add("is-open");
     lockScroll();
