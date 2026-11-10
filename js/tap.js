@@ -19,8 +19,8 @@
       const a = e.target.closest("a[href]");
       if (!a) return;
       const href = a.getAttribute("href");
-      // Lascia stare ancore nella stessa pagina e target speciali
-      if (!href || href.startsWith("#") || a.target === "_blank") return;
+      // Lascia stare ancore, link contatti (aprono il modal) e target speciali
+      if (!href || href.includes("#contatti") || href.startsWith("#") || a.target === "_blank") return;
       e.preventDefault();
       location.href = a.href;
     },
