@@ -17,7 +17,6 @@
           <img src="assets/img/logo.png" alt="" />
           <span class="cars-loader-ring"></span>
         </div>
-        <p>Caricamento scheda</p>
       </div>
     </div>`;
 

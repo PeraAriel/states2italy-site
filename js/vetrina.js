@@ -15,7 +15,6 @@
         <img src="assets/img/logo.png" alt="" />
         <span class="cars-loader-ring"></span>
       </div>
-      <p>Caricamento vetrina</p>
     </div>`;
 
   // Il loader resta visibile almeno 1 secondo, così l'animazione
