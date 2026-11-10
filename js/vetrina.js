@@ -23,8 +23,6 @@
       <span class="cars-loader-ring"></span>
     </div>`;
   if (isHome) {
-    // Riserva l'altezza del carosello mentre carica
-    grid.style.minHeight = "560px";
     grid.appendChild(loader);
   } else {
     document.body.appendChild(loader);
@@ -93,7 +91,6 @@
     grid.innerHTML = `<div class="cars-slider">${slidesHtml}</div><div class="cars-dots"></div>`;
     // Il loader resta sopra il carosello e sfuma via
     grid.appendChild(loader);
-    grid.style.minHeight = "";
 
     const slideEls = Array.from(grid.querySelectorAll(".car-slide"));
     const dotsWrap = grid.querySelector(".cars-dots");

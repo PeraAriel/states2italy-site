@@ -878,6 +878,18 @@ a, button, .car-card, .car-feature {
   padding: 0;
 }
 
+/* Quando la griglia e' vuota (solo loader), le diamo l'altezza
+   approssimativa del carosello che apparira' */
+.grid-cars-home:has(.cars-loader-inline:only-child) {
+  min-height: 520px;
+}
+
+@media (max-width: 720px) {
+  .grid-cars-home:has(.cars-loader-inline:only-child) {
+    min-height: 600px;
+  }
+}
+
 .cars-loader-logo {
   position: relative;
   display: grid;
