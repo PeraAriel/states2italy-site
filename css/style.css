@@ -859,7 +859,7 @@ a, button, .car-card, .car-feature {
   gap: 28px;
   /* Riserva da subito lo spazio degli annunci: la pagina non si
      allarga quando compaiono e il footer resta fuori vista */
-  min-height: 70vh;
+  min-height: 100vh;
   padding: 40px 0;
 }
 
