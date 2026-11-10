@@ -62,7 +62,8 @@
     document.body.style.paddingRight = "";
     const header = document.querySelector(".site-header");
     if (header) header.style.paddingRight = "";
-    window.scrollTo(0, scrollY);
+    // Ripristina la posizione SENZA animazione (html ha scroll-behavior: smooth)
+    window.scrollTo({ top: scrollY, behavior: "instant" });
   }
 
   function openModal(sourceText) {

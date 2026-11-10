@@ -857,7 +857,9 @@ a, button, .car-card, .car-feature {
   align-items: center;
   justify-content: center;
   gap: 28px;
-  min-height: 320px;
+  /* Riserva da subito lo spazio degli annunci: la pagina non si
+     allarga quando compaiono e il footer resta fuori vista */
+  min-height: 70vh;
   padding: 40px 0;
 }
 
