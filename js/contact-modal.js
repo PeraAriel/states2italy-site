@@ -29,7 +29,6 @@
         </svg>
       </button>
       <h2 data-title>Parliamone.</h2>
-      <p>Scrivici modello, anno e budget: attiviamo una ricerca dedicata sul territorio americano e non solo.</p>
       <a class="contact-modal-cta" href="mailto:${EMAIL}">Contattaci</a>
     </div>`;
   document.body.appendChild(modal);
