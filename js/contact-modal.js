@@ -35,13 +35,18 @@
   document.body.appendChild(modal);
 
   let open = false;
+  let scrollY = 0;
 
   function lockScroll() {
-    // Compensa la scrollbar che sparisce, altrimenti la pagina
-    // "salta" lateralmente quando si blocca lo scroll. La
-    // compensazione va anche sull'header, che è position: fixed.
+    // Su mobile position:fixed sul body evita sia lo scroll sia la
+    // banda bianca in fondo (l'overflow:hidden da solo non basta).
+    // Su desktop compensiamo la scrollbar che sparisce.
     const sbw = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = "hidden";
+    scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = -scrollY + "px";
+    document.body.style.left = "0";
+    document.body.style.right = "0";
     if (sbw > 0) {
       document.body.style.paddingRight = sbw + "px";
       const header = document.querySelector(".site-header");
@@ -50,10 +55,14 @@
   }
 
   function unlockScroll() {
-    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
     document.body.style.paddingRight = "";
     const header = document.querySelector(".site-header");
     if (header) header.style.paddingRight = "";
+    window.scrollTo(0, scrollY);
   }
 
   function openModal(sourceText) {
