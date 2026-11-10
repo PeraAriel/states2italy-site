@@ -871,12 +871,12 @@ a, button, .car-card, .car-feature {
   background: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  min-height: 480px;
+  min-height: 560px;
   padding: 40px 0;
 }
 
 @media (max-width: 720px) {
-  .cars-loader-inline { min-height: 560px; }
+  .cars-loader-inline { min-height: 640px; }
 }
 
 .cars-loader-logo {
