@@ -866,6 +866,16 @@ a, button, .car-card, .car-feature {
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* Variante inline (home): nel flusso della pagina, come prima */
+.cars-loader-inline {
+  position: static;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  min-height: 320px;
+  padding: 40px 0;
+}
+
 .cars-loader-logo {
   position: relative;
   display: grid;
