@@ -8,14 +8,17 @@
   const grid = document.querySelector("[data-cars-grid]");
   if (!grid) return;
 
-  // Loader con logo mentre i dati arrivano da Supabase
-  grid.innerHTML = `
-    <div class="cars-loader" role="status" aria-label="Caricamento vetrina">
-      <div class="cars-loader-logo">
-        <img src="assets/img/logo.png" alt="" />
-        <span class="cars-loader-ring"></span>
-      </div>
+  // Loader overlay con logo mentre i dati arrivano da Supabase
+  const loader = document.createElement("div");
+  loader.className = "cars-loader";
+  loader.setAttribute("role", "status");
+  loader.setAttribute("aria-label", "Caricamento vetrina");
+  loader.innerHTML = `
+    <div class="cars-loader-logo">
+      <img src="assets/img/logo.png" alt="" />
+      <span class="cars-loader-ring"></span>
     </div>`;
+  document.body.appendChild(loader);
 
   // Il loader resta visibile almeno 1 secondo, così l'animazione
   // si vede anche quando Supabase risponde quasi subito
@@ -23,6 +26,9 @@
     CarsStore.getCars(),
     new Promise((r) => setTimeout(r, 1000))
   ]);
+  // Uscita dolce del loader overlay
+  loader.classList.add("is-done");
+  setTimeout(() => loader.remove(), 400);
   const isHome = grid.classList.contains("grid-cars-home");
 
   // In homepage solo 3 veicoli selezionati; la pagina vetrina li mostra tutti

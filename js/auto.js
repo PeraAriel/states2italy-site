@@ -9,16 +9,17 @@
   const root = document.querySelector("[data-car-detail]");
   if (!root) return;
 
-  // Loader con logo mentre la scheda arriva da Supabase
-  root.innerHTML = `
-    <div class="wrap">
-      <div class="cars-loader" role="status" aria-label="Caricamento scheda">
-        <div class="cars-loader-logo">
-          <img src="assets/img/logo.png" alt="" />
-          <span class="cars-loader-ring"></span>
-        </div>
-      </div>
+  // Loader overlay con logo mentre la scheda arriva da Supabase
+  const loader = document.createElement("div");
+  loader.className = "cars-loader";
+  loader.setAttribute("role", "status");
+  loader.setAttribute("aria-label", "Caricamento scheda");
+  loader.innerHTML = `
+    <div class="cars-loader-logo">
+      <img src="assets/img/logo.png" alt="" />
+      <span class="cars-loader-ring"></span>
     </div>`;
+  document.body.appendChild(loader);
 
   const slug = new URLSearchParams(location.search).get("auto");
   // Loader visibile almeno 1 secondo (vedi vetrina.js)
@@ -26,6 +27,9 @@
     slug ? CarsStore.getCarBySlug(slug) : Promise.resolve(null),
     new Promise((r) => setTimeout(r, 1000))
   ]);
+  // Uscita dolce del loader overlay
+  loader.classList.add("is-done");
+  setTimeout(() => loader.remove(), 400);
 
   if (!car) {
     root.innerHTML = `
