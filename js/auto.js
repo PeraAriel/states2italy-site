@@ -22,7 +22,11 @@
     </div>`;
 
   const slug = new URLSearchParams(location.search).get("auto");
-  const car = slug ? await CarsStore.getCarBySlug(slug) : null;
+  // Loader visibile almeno 1 secondo (vedi vetrina.js)
+  const [car] = await Promise.all([
+    slug ? CarsStore.getCarBySlug(slug) : Promise.resolve(null),
+    new Promise((r) => setTimeout(r, 1000))
+  ]);
 
   if (!car) {
     root.innerHTML = `

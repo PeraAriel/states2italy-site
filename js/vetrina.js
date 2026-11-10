@@ -18,7 +18,12 @@
       <p>Caricamento vetrina</p>
     </div>`;
 
-  const cars = await CarsStore.getCars();
+  // Il loader resta visibile almeno 1 secondo, così l'animazione
+  // si vede anche quando Supabase risponde quasi subito
+  const [cars] = await Promise.all([
+    CarsStore.getCars(),
+    new Promise((r) => setTimeout(r, 1000))
+  ]);
   const isHome = grid.classList.contains("grid-cars-home");
 
   // In homepage solo 3 veicoli selezionati; la pagina vetrina li mostra tutti
