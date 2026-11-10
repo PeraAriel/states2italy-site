@@ -871,7 +871,7 @@ a, button, .car-card, .car-feature {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: #fff;
+  background: var(--bg-soft);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   min-height: 0;
