@@ -118,5 +118,16 @@
   }
 
   // Notifica reveal.js che ci sono nuovi .reveal da osservare
+  // Su touch alcuni browser "mangiano" il primo tap sui link con hover:
+  // navighiamo esplicitamente al touchend, così basta un solo tocco.
+  if (window.matchMedia("(hover: none)").matches) {
+    grid.querySelectorAll("a.car-card, a.car-feature").forEach((a) => {
+      a.addEventListener("touchend", (e) => {
+        e.preventDefault();
+        location.href = a.href;
+      });
+    });
+  }
+
   document.dispatchEvent(new CustomEvent("states2italy:rendered"));
 })();

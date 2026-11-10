@@ -29,6 +29,11 @@ img { display: block; max-width: 100%; }
 
 a { color: inherit; text-decoration: none; }
 
+/* Niente rettangolo bianco/grigio al tap su mobile */
+a, button, .car-card, .car-feature {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
 /* ---------- Header / Navbar ---------- */
