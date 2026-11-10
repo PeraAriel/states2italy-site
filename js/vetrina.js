@@ -122,7 +122,7 @@
       t = setInterval(() => goTo(cur + 1), SLIDE_EVERY_MS);
     }
 
-    slideEls[0].classList.add("is-active");
+    slideEls[0].classList.add("is-active", "is-first");
     dots[0].classList.add("is-active");
     restart();
     grid.addEventListener("mouseenter", () => clearInterval(t));

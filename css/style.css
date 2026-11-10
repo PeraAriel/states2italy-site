@@ -432,6 +432,16 @@ a, button, .car-card, .car-feature {
   z-index: 2;
 }
 
+/* Prima apparizione dopo il loader: entrata dal basso con fade */
+.car-slide.is-first {
+  animation: slide-in-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(36px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .car-slide.is-leaving {
   transform: translateX(-105%); /* esce verso sinistra */
   z-index: 1;
@@ -901,6 +911,133 @@ a, button, .car-card, .car-feature {
 @media (prefers-reduced-motion: reduce) {
   .cars-loader-logo img,
   .cars-loader-ring { animation: none; }
+}
+
+/* ---------- Modal contatti ---------- */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.contact-modal.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.contact-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.contact-modal.is-open .contact-modal-backdrop { opacity: 1; }
+
+.contact-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14);
+  padding: 44px 36px 40px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition: opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+
+.contact-modal.is-open .contact-modal-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* Animazione di uscita */
+.contact-modal.is-closing .contact-modal-backdrop {
+  opacity: 0;
+  transition-duration: 0.28s;
+}
+
+.contact-modal.is-closing .contact-modal-card {
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition-duration: 0.28s;
+}
+
+.contact-modal-card .kicker { margin-bottom: 6px; }
+
+.contact-modal-card h2 {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.contact-modal-card p {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 auto 26px;
+}
+
+.contact-modal-cta {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.contact-modal-cta:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+
+.contact-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.contact-modal-close:hover {
+  color: var(--ink);
+  transform: rotate(90deg);
+}
+
+.contact-modal-close svg { width: 18px; height: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-modal-backdrop,
+  .contact-modal-card,
+  .contact-modal-close { transition: none; }
 }
 
 /* ---------- Animazioni di ingresso ---------- */
