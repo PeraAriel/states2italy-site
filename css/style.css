@@ -412,6 +412,7 @@ a, button, .car-card, .car-feature {
 .grid-cars-home {
   display: block;
   padding: 44px 0 72px;
+  position: relative; /* contiene il loader overlay */
 }
 
 .cars-slider {
@@ -864,19 +865,17 @@ a, button, .car-card, .car-feature {
   background: #fff;
 }
 
-/* Variante inline (home): nel flusso della pagina, con la stessa
-   altezza del carosello che apparira' — la pagina non salta */
+/* Variante inline (home): sovrapposta al carosello, sfuma via
+   senza cambiare il layout — niente scatti */
 .cars-loader-inline {
-  position: static;
-  background: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #fff;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  min-height: 560px;
-  padding: 40px 0;
-}
-
-@media (max-width: 720px) {
-  .cars-loader-inline { min-height: 640px; }
+  min-height: 0;
+  padding: 0;
 }
 
 .cars-loader-logo {

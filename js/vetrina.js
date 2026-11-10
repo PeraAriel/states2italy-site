@@ -11,8 +11,8 @@
   const isHome = grid.classList.contains("grid-cars-home");
 
   // Loader con logo mentre i dati arrivano da Supabase.
-  // Nella pagina vetrina e' un overlay fisso con sfondo sfocato;
-  // in home resta nel flusso della pagina, come prima.
+  // Nella pagina vetrina e' un overlay fisso a schermo intero;
+  // in home e' sovrapposto al carosello e sfuma via senza scatti.
   const loader = document.createElement("div");
   loader.className = isHome ? "cars-loader cars-loader-inline" : "cars-loader";
   loader.setAttribute("role", "status");
@@ -22,8 +22,13 @@
       <img src="assets/img/logo.png" alt="" />
       <span class="cars-loader-ring"></span>
     </div>`;
-  if (isHome) grid.appendChild(loader);
-  else document.body.appendChild(loader);
+  if (isHome) {
+    // Riserva l'altezza del carosello mentre carica
+    grid.style.minHeight = "560px";
+    grid.appendChild(loader);
+  } else {
+    document.body.appendChild(loader);
+  }
 
   // Il loader resta visibile almeno 1 secondo, così l'animazione
   // si vede anche quando Supabase risponde quasi subito
@@ -31,9 +36,6 @@
     CarsStore.getCars(),
     new Promise((r) => setTimeout(r, 1000))
   ]);
-  // Uscita dolce del loader
-  loader.classList.add("is-done");
-  setTimeout(() => loader.remove(), 400);
 
   // In homepage solo 3 veicoli selezionati; la pagina vetrina li mostra tutti
   const HOME_SLUGS = ["porsche-911-carrera-993", "ford-gt", "shelby-gt500"];
@@ -89,6 +91,9 @@
       )
       .join("");
     grid.innerHTML = `<div class="cars-slider">${slidesHtml}</div><div class="cars-dots"></div>`;
+    // Il loader resta sopra il carosello e sfuma via
+    grid.appendChild(loader);
+    grid.style.minHeight = "";
 
     const slideEls = Array.from(grid.querySelectorAll(".car-slide"));
     const dotsWrap = grid.querySelector(".cars-dots");
@@ -140,6 +145,10 @@
   } else {
     grid.innerHTML = list.map((c) => renderCard(c, false)).join("");
   }
+
+  // Uscita dolce del loader: sfuma restando sopra il contenuto
+  requestAnimationFrame(() => loader.classList.add("is-done"));
+  setTimeout(() => loader.remove(), 600);
 
   // Notifica reveal.js che ci sono nuovi .reveal da osservare
   document.dispatchEvent(new CustomEvent("states2italy:rendered"));
