@@ -3,14 +3,14 @@
    Legge ?auto=<slug> e renderizza scheda + galleria.
    ============================================================ */
 
-(function () {
+(async function () {
   "use strict";
 
   const root = document.querySelector("[data-car-detail]");
   if (!root) return;
 
   const slug = new URLSearchParams(location.search).get("auto");
-  const car = slug ? CarsStore.getCarBySlug(slug) : null;
+  const car = slug ? await CarsStore.getCarBySlug(slug) : null;
 
   if (!car) {
     root.innerHTML = `

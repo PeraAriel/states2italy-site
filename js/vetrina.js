@@ -2,13 +2,13 @@
    STATES2ITALY — vetrina (render da data layer)
    ============================================================ */
 
-(function () {
+(async function () {
   "use strict";
 
   const grid = document.querySelector("[data-cars-grid]");
   if (!grid) return;
 
-  const cars = CarsStore.getCars();
+  const cars = await CarsStore.getCars();
   const isHome = grid.classList.contains("grid-cars-home");
 
   // In homepage solo 3 veicoli selezionati; la pagina vetrina li mostra tutti
