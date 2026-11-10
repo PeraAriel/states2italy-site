@@ -434,11 +434,11 @@ a, button, .car-card, .car-feature {
 
 /* Prima apparizione dopo il loader: entrata dal basso con fade */
 .car-slide.is-first {
-  animation: slide-in-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation: slide-in-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s both;
 }
 
 @keyframes slide-in-up {
-  from { opacity: 0; transform: translateY(36px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -910,7 +910,13 @@ a, button, .car-card, .car-feature {
 }
 
 .cars-loader.is-done {
-  animation: loader-out 0.4s ease forwards;
+  animation: loader-out 0.5s ease forwards;
+}
+
+/* In home il loader sfuma restando nel flusso, poi cede il posto
+   al carosello senza scatti */
+.cars-loader-inline.is-done {
+  animation: loader-out 0.5s ease forwards;
 }
 
 @keyframes loader-spin {
