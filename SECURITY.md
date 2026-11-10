@@ -1,65 +1,19 @@
-# states2italy-site
+# Sicurezza
 
-**La tua prossima auto è oltreoceano** 🚗✈️
+## Protezione del database
 
-Non importiamo solo auto. Un marketplace innovativo per l'importazione di veicoli dagli Stati Uniti in Italia.
+Il database del catalogo veicoli è configurato secondo il principio del minimo privilegio:
 
-## 🔐 Setup Credenziali Supabase
+- **Lettura pubblica** — il sito può unicamente consultare il catalogo, come è giusto che sia per una vetrina pubblica.
+- **Scrittura riservata** — l'inserimento e la modifica dei dati sono possibili esclusivamente dalla console di amministrazione, protetta da autenticazione. Nessuna operazione di scrittura è consentita dal sito pubblico.
+- **Accesso a livello di riga** — ogni tabella applica regole di accesso granulari, verificate dal database stesso a ogni richiesta e non aggirabili dal lato client.
 
-### Per lo Sviluppo Locale
+## Gestione delle credenziali
 
-1. **Copia il file di template:**
-   ```bash
-   cp .env.example .env
-   ```
+- Nel codice pubblico del sito è presente unicamente la chiave pensata per l'esposizione nel browser, che da sola consente la sola lettura del catalogo.
+- Le credenziali con privilegi elevati non fanno parte del repository né del codice distribuito agli utenti.
+- Le chiavi sensibili possono essere rigenerate in qualsiasi momento dalla console di amministrazione, senza impatto sul funzionamento del sito.
 
-2. **Compila le credenziali Supabase:**
-   - Accedi a [Supabase Dashboard](https://app.supabase.com)
-   - Vai a **Project Settings > API**
-   - Copia `Project URL` e `anon` (public key)
-   - Incolla in `.env`:
-   ```env
-   VITE_SUPABASE_URL=https://your-project-id.supabase.co
-   VITE_SUPABASE_ANON_KEY=sb_your_public_key_here
-   ```
+## Segnalazione di vulnerabilità
 
-3. **NON committare il file `.env`:**
-   - È automaticamente ignorato da `.gitignore`
-   - Contiene credenziali sensibili per lo sviluppo locale
-
-### ⚠️ Sicurezza
-
-- ✅ Le credenziali sono caricate da variabili d'ambiente
-- ✅ Il file `.env` è escluso dal version control
-- ✅ La storia git è stata ripulita dalle credenziali esposte
-- ✅ Solo `.env.example` è committato (senza credenziali reali)
-
-### Per il Deployment in Produzione
-
-In ambienti di produzione (Vercel, Netlify, etc.), configura le variabili d'ambiente direttamente nel pannello di controllo:
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-
-## 📁 Struttura del Progetto
-
-```
-states2italy-site/
-├── index.html              # Homepage
-├── auto.html              # Dettaglio veicolo
-├── vetrina.html           # Vetrina/Catalogo
-├── privacy.html           # Privacy Policy
-├── termini.html           # Termini di Servizio
-├── css/                   # Stili
-├── js/
-│   ├── supabase-config.js # Configurazione Supabase (sicura)
-│   └── cars-data.js       # Dati fallback
-├── assets/                # Immagini e risorse
-├── supabase/              # Schema DB e migrations
-├── .env                   # Variabili d'ambiente (NON committare)
-├── .env.example           # Template (.gitignore)
-└── .gitignore             # Esclusioni Git
-```
-
----
-
-Built with ❤️ for Italians who dream big.
+Se ritieni di aver individuato un problema di sicurezza, ti chiediamo di segnalarcelo in modo responsabile all'indirizzo **states2italy@gmail.com**, evitando la divulgazione pubblica fino alla risoluzione.
