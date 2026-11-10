@@ -861,9 +861,7 @@ a, button, .car-card, .car-feature {
   align-items: center;
   justify-content: center;
   gap: 28px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: #fff;
 }
 
 /* Variante inline (home): nel flusso della pagina, come prima */
